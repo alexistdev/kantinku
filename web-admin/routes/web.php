@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{DashboardAdmin as DashAdm};
+use App\Http\Controllers\Admin\{DashboardAdmin as DashAdm,
+    MerchantController as MerchAdm,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['roles' => 'admin'], function () {
         Route::get('/staff/dashboard', [DashAdm::class, 'index'])->name('adm.dashboard');
+
+        Route::get('/staff/merchant', [MerchAdm::class, 'index'])->name('adm.merchant');
+        Route::post('/staff/merchant', [MerchAdm::class, 'store'])->name('adm.merchant.save');
+        Route::get('/staff/merchant/add', [MerchAdm::class, 'create'])->name('adm.merchant.add');
     });
 });
 

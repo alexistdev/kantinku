@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class DashboardAdmin extends Controller
 {
     use AdminTrait;
-    protected $users;
+
 
     public function index()
     {
