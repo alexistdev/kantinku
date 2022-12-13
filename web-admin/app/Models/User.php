@@ -58,4 +58,14 @@ class User extends Authenticatable
     {
         return (strtolower($role)==strtolower($this->have_role->name)) ? true : false;
     }
+
+    public function scopeMerchantonly($query)
+    {
+        return $query->where('role_id',2)->with('merchant');
+    }
+
+    public function merchant()
+    {
+        return $this->hasOne(Merchant::class);
+    }
 }
