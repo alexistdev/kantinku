@@ -44,7 +44,6 @@ class MerchantController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
-//                    $url = "";
                     $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> MENU</a>";
 //                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
                     return $btn;
