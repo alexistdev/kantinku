@@ -18,21 +18,44 @@
         android:theme="@style/Theme.Ekantin"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".user.DetailOrder"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
-            android:name=".user.KeranjangBelanja"
-            android:parentActivityName=".user.DashboardUser"
-            android:exported="false">
+            android:name=".user.MenuMinuman"
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".merchant.DashboardMerchant"
-            android:exported="false">
+            android:name=".user.MenuMakanan"
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- <activity -->
+        </activity>
+        <activity
+            android:name=".user.KeranjangBelanja"
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+<!--        <activity-->
+<!--            android:name=".merchant.DashboardMerchant"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity> &lt;!&ndash; <activity &ndash;&gt;-->
         <!-- android:name=".user.DashboardUser" -->
         <!-- android:exported="false"> -->
         <!-- <meta-data -->
@@ -67,7 +90,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".user.DashboardUser"
+            android:name=".merchant.DashboardMerchant"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
