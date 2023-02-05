@@ -22,7 +22,7 @@ class MerchantController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $merchant = User::merchantonly()->orderBy('id', 'desc')->get();
+            $merchant = User::with('merchant')->merchantonly()->orderBy('id', 'desc')->get();
             return DataTables::of($merchant)
                 ->addIndexColumn()
                 ->editColumn('created_at', function ($request) {
@@ -43,11 +43,11 @@ class MerchantController extends Controller
                     return $str;
                 })
                 ->addColumn('action', function ($row) {
-//                    $url = route('', base64_encode($row->id));
+                    $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
 //                    $url = "";
-//                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> Edit</a>";
+                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> MENU</a>";
 //                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
-                    return $btn = "";
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -106,7 +106,7 @@ class MerchantController extends Controller
                 /** insert tabel merchant */
                 $merchant = new Merchant();
                 $merchant->user_id = $idUser;
-                $merchant->name = $request->name;
+                $merchant->name = $request->namaKantin;
                 $merchant->phone = $request->phone;
                 $merchant->save();
                 DB::commit();

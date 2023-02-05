@@ -21,6 +21,8 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('nama');
             $table->integer('harga');
+            $table->tinyInteger('tipe')->default(1);//tipe =1 makanan , tipe =2 minuman
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 
     <!-- Menu User-->
     <string name="menuUser1">Home</string>
-    <string name="menuUser2">Laundry</string>
+    <string name="menuUser2">Riwayat</string>
     <string name="menuUser3">Akun</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -3,16 +3,26 @@ package com.coder.ekantin.api;
 import android.content.Context;
 
 import com.coder.ekantin.BuildConfig;
+import com.coder.ekantin.model.LoginModel;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 
 public interface APIService {
+    String urlAPI = Constants.urlAPI;
 
+    @FormUrlEncoded
+    @POST(urlAPI+"auth")
+    Call<LoginModel> loginUser(@Field("email") String email,
+                               @Field("password") String password);
 
     class Factory {
         public static APIService create(Context mContext) {

@@ -12,7 +12,8 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{route('adm.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item" aria-current="page">Data Merchant DSC</li>
+                    <li class="breadcrumb-item" aria-current="page">Data Merchant: {{$dataMerchant->name}}</li>
+                    <li class="breadcrumb-item" aria-current="page">Menu</li>
                     <li class="breadcrumb-item active" aria-current="page">Tambah</li>
                 </ol>
             </nav>
@@ -22,66 +23,67 @@
         </div>
     </div>
     <!--end breadcrumb-->
-    <h6 class="mb-0 text-uppercase">Master Data Merchant</h6>
+    <h6 class="mb-0 text-uppercase">Data Menu</h6>
     <hr/>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('adm.merchant.save')}}" method="post">
+                    <form action="{{route('adm.merchant.menu.save',$id)}}" method="post">
                         @csrf
-                        <!-- Start : Nama Kantin -->
+                        <!-- Start : Nama Menu -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <label for="namaKantin" class="form-label labelError  @error('namaKantin')text-danger @enderror">Nama Kantin</label>
-                                <input  class="form-control inputError @error('namaKantin')is-invalid @enderror" type="text" name="namaKantin" placeholder="Nama Kantin"
-                                       id="namaKantin"/>
-                                @error('namaKantin')
+                                <label for="namaMenu" class="form-label labelError  @error('namaMenu')text-danger @enderror">Nama Menu</label>
+                                <input  class="form-control inputError @error('namaMenu')is-invalid @enderror" type="text" name="namaMenu" placeholder="Nama Kantin"
+                                       id="namaMenu"/>
+                                @error('namaMenu')
                                 <p class="text-danger errorMessage">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <!-- End : Nama Kantin -->
+                        <!-- End : Nama Menu -->
 
-                        <!-- Start : Email -->
+                        <!-- Start : harga -->
                         <div class="row mt-3">
                             <div class="col-lg-12">
-                                <label for="email" class="form-label labelError @error('email')text-danger @enderror">Email</label>
-                                <input class="form-control inputError @error('email')is-invalid @enderror" type="email" name="email" placeholder="Email"
-                                       id="email"/>
-                                @error('email')
+                                <label for="tipe" class="form-label labelError @error('tipe')text-danger @enderror">Tipe Menu</label>
+                                <select name="tipe" id="tipe" class="form-control inputError @error('tipe')is-invalid @enderror">
+                                    <option value="">PILIH</option>
+                                    <option value="1" @if(old('tipe') == "1") selected @endif>Makanan</option>
+                                    <option value="2" @if(old('tipe') == "2") selected @endif>Minuman</option>
+                                </select>
+
+                                @error('tipe')
                                 <p class="text-danger errorMessage">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <!-- End : Email -->
+                        <!-- End : harga -->
 
-                        <!-- Start : Phone -->
+                        <!-- Start : harga -->
                         <div class="row mt-3">
                             <div class="col-lg-12">
-                                <label for="phone" class="form-label labelError @error('phone')text-danger @enderror">Phone</label>
-                                <input class="form-control inputError @error('phone')is-invalid @enderror" type="text" name="phone" placeholder="Phone" id="phone"/>
-                                @error('phone')
+                                <label for="harga" class="form-label labelError @error('harga')text-danger @enderror">Harga</label>
+                                <input class="form-control inputError @error('harga')is-invalid @enderror" type="number" name="harga" placeholder="Harga"
+                                       id="harga"/>
+                                @error('harga')
                                 <p class="text-danger errorMessage">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <!-- End : Phone -->
+                        <!-- End : harga -->
 
                         <!-- Start: Tombol Simpan -->
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-sm btn-success">SIMPAN</button>
-                                <a href="{{route('adm.merchant')}}">
+                                <a href="{{route('adm.merchant.menu',$id)}}">
                                     <button type="button" class="btn btn-sm btn-danger">BATAL</button>
                                 </a>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <span class="text-sm text-danger">* password default = 1234</span>
-                            </div>
-                        </div>
+
                         <!-- End: Tombol Simpan -->
                     </form>
                 </div>

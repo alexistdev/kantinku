@@ -6,5 +6,5 @@ public class Constants {
 //Key Session
     public static final String KEY_USER = "DR4234";
     public static final String KEY_SESSION = "SZX1234";
-    public static final String urlAPI = "api/k1/";
+    public static final String urlAPI = "api/v1/";
 }
