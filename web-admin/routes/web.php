@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardAdmin as DashAdm,
     MerchantController as MerchAdm,
     MenuController as MenuAdm,
+    TransaksiAdmin as TransAdm,
+    CustomerController as CusAdm,
+    SettingController as SettAdm,
 };
 
 /*
@@ -41,6 +44,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/staff/{id}/merchant/menu', [MenuAdm::class, 'index'])->name('adm.merchant.menu');
         Route::post('/staff/{id}/merchant/menu', [MenuAdm::class, 'store'])->name('adm.merchant.menu.save');
         Route::get('/staff/{id}/merchant/menu/add', [MenuAdm::class, 'create'])->name('adm.merchant.menuadd');
+
+        Route::get('/staff/transaksi', [TransAdm::class, 'index'])->name('adm.merchant.transaksi');
+        Route::get('/staff/customer', [CusAdm::class, 'index'])->name('adm.merchant.customer');
+        Route::get('/staff/setting', [SettAdm::class, 'index'])->name('adm.setting');
 
     });
 });
