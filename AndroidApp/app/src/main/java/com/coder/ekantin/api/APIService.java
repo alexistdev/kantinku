@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.coder.ekantin.BuildConfig;
 import com.coder.ekantin.model.LoginModel;
+import com.coder.ekantin.model.MenuModel;
 import com.coder.ekantin.response.GetMenu;
 
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,12 @@ import retrofit2.http.Query;
 
 public interface APIService {
     String urlAPI = Constants.urlAPI;
+
+    /** tambah item ke dalam keranjang */
+    @FormUrlEncoded
+    @POST(urlAPI+"cart")
+    Call<MenuModel> addCart(@Field("user_id") String userId,
+                            @Field("menu_id") String menuId);
 
     @FormUrlEncoded
     @POST(urlAPI+"auth")

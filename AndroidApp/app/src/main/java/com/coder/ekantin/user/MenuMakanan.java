@@ -5,16 +5,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.coder.ekantin.R;
 import com.coder.ekantin.adapter.MenuAdapter;
 import com.coder.ekantin.api.APIService;
+import com.coder.ekantin.api.Constants;
 import com.coder.ekantin.api.NoConnectivityException;
 import com.coder.ekantin.model.APIError;
 import com.coder.ekantin.model.MenuModel;
 import com.coder.ekantin.response.GetMenu;
+import com.coder.ekantin.ui.Login;
 import com.coder.ekantin.utils.ErrorUtils;
 import com.coder.ekantin.utils.HelperUtils;
 import java.util.ArrayList;
@@ -54,11 +58,56 @@ public class MenuMakanan extends AppCompatActivity implements MenuAdapter.ClickL
         this.dataInit();
         this.setupRecyclerView();
         this.setData(this, getTipe);
+        HelperUtils.pesan(getApplicationContext(),getTipe);
     }
 
     @Override
-    public void dataItemKeranjang(String msg) {
-       HelperUtils.pesan(getApplicationContext(),msg);
+    public void dataItemKeranjang(String idMenu) {
+       this.addToCart(idMenu,getApplicationContext());
+    }
+
+
+
+    public void addToCart(String idMenu,Context mContext){
+        this.showDialog();
+        try{
+            SharedPreferences sharedPreferences = getApplication().getSharedPreferences(
+                    Constants.KEY_USER, Context.MODE_PRIVATE);
+            String idUser = sharedPreferences.getString("idUser", "");
+
+            Call<MenuModel> call = APIService.Factory.create(mContext).addCart(idUser,idMenu);
+            call.enqueue(new Callback<MenuModel>() {
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<MenuModel> call, Response<MenuModel> response) {
+                    hideDialog();
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            Intent intent = new Intent(MenuMakanan.this, DetailOrder.class);
+                            startActivity(intent);
+                            HelperUtils.pesan(mContext,"Item berhasil ditambahkan!");
+                        }
+                    } else {
+                        APIError error = ErrorUtils.parseError(response);
+                        if (error != null) {
+                            HelperUtils.pesan(mContext, error.message());
+                        }
+                    }
+                }
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<MenuModel> call, Throwable t) {
+                    hideDialog();
+                    if (t instanceof NoConnectivityException) {
+                        HelperUtils.pesan(mContext, t.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            hideDialog();
+            e.printStackTrace();
+            HelperUtils.pesan(getApplicationContext(), e.getMessage());
+        }
     }
 
     public void setData(Context mContext,String tipe){
