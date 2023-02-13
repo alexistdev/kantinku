@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController as Login,
-    App\Http\Controllers\Api\MenuController as menu;
+    App\Http\Controllers\Api\MenuController as menu,
+    App\Http\Controllers\Api\KeranjangController as cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/v1/auth', [Login::class, 'Auth_login'])->name('api.login');
 Route::get('/v1/get_menu', [menu::class, 'get_menu'])->name('api.menu');
+Route::get('/v1/cart', [cart::class, 'get_item'])->name('api.cart.list');
+Route::post('/v1/cart', [cart::class, 'add_item'])->name('api.cart.add');
+Route::delete('/v1/cart', [cart::class, 'delete_item'])->name('api.cart.delete');
+Route::post('/v1/checkout', [cart::class, 'check_out'])->name('api.checkout');

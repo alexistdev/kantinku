@@ -10,7 +10,7 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'merchant_id','name','harga','status'
+        'merchant_id','name','harga','status','tipe'
     ];
 
     public function transaksi(){
