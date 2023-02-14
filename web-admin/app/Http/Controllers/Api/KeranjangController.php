@@ -86,7 +86,7 @@ class KeranjangController extends Controller
                     'message' => "data ditemukan",
                     'total' => $total,
                     'data' => $data,
-                ], 404);
+                ], 200);
             }
             return response()->json([
                 'status' => false,

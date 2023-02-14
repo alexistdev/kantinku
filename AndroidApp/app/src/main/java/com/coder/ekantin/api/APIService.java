@@ -5,6 +5,7 @@ import android.content.Context;
 import com.coder.ekantin.BuildConfig;
 import com.coder.ekantin.model.LoginModel;
 import com.coder.ekantin.model.MenuModel;
+import com.coder.ekantin.response.GetKeranjang;
 import com.coder.ekantin.response.GetMenu;
 
 import java.util.concurrent.TimeUnit;
@@ -36,6 +37,9 @@ public interface APIService {
 
     @GET(urlAPI+"get_menu")
     Call<GetMenu> getMenu(@Query("tipe") String tipe);
+
+    @GET(urlAPI+"cart")
+    Call<GetKeranjang> getCart(@Query("user_id") String userId);
 
     class Factory {
         public static APIService create(Context mContext) {

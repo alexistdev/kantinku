@@ -29,4 +29,13 @@ public class MenuModel {
     public String getHargaMenu() {
         return hargaMenu;
     }
+
+    @Override
+    public String toString() {
+        return "MenuModel{" +
+                "idMenu='" + idMenu + '\'' +
+                ", namaMenu='" + namaMenu + '\'' +
+                ", hargaMenu='" + hargaMenu + '\'' +
+                '}';
+    }
 }

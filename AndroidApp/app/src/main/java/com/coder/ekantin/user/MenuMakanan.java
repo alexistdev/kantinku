@@ -83,7 +83,7 @@ public class MenuMakanan extends AppCompatActivity implements MenuAdapter.ClickL
                     hideDialog();
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            Intent intent = new Intent(MenuMakanan.this, DetailOrder.class);
+                            Intent intent = new Intent(MenuMakanan.this, KeranjangBelanja.class);
                             startActivity(intent);
                             HelperUtils.pesan(mContext,"Item berhasil ditambahkan!");
                         }
