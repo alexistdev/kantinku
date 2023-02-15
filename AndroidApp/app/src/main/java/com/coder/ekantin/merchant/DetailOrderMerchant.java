@@ -2,21 +2,17 @@ package com.coder.ekantin.merchant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.coder.ekantin.R;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.NoConnectivityException;
 import com.coder.ekantin.model.OrderModel;
-import com.coder.ekantin.ui.Login;
 import com.coder.ekantin.utils.HelperUtils;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,29 +57,20 @@ public class DetailOrderMerchant extends AppCompatActivity {
                 mTolak.setVisibility(View.INVISIBLE);
                 mSelesai.setVisibility(View.VISIBLE);
             }
-            mProses.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(idOrder != null){
-                        doSubmit(getApplicationContext(),"2",idOrder);
-                    }
+            mProses.setOnClickListener(v -> {
+                if(idOrder != null){
+                    doSubmit(getApplicationContext(),"2",idOrder);
                 }
             });
-            mTolak.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(idOrder != null){
-                        doSubmit(getApplicationContext(),"4",idOrder);
-                    }
+            mTolak.setOnClickListener(v -> {
+                if(idOrder != null){
+                    doSubmit(getApplicationContext(),"4",idOrder);
                 }
             });
-            mSelesai.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(idOrder != null){
-                        doSubmit(getApplicationContext(),"3",idOrder);
-                        HelperUtils.pesan(getApplicationContext(),"Pesanan Selesai");
-                    }
+            mSelesai.setOnClickListener(v -> {
+                if(idOrder != null){
+                    doSubmit(getApplicationContext(),"3",idOrder);
+                    HelperUtils.pesan(getApplicationContext(),"Pesanan Selesai");
                 }
             });
         }

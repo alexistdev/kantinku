@@ -35,4 +35,6 @@ Route::get('/v1/transaksi/detail', [trx::class, 'list_detail'])->name('api.cart.
 
 /** merchant */
 Route::get('/v2/order', [MerchantOrder::class, 'get_list_order'])->name('api.merchant.order.list');
+Route::get('/v2/menu', [menu::class, 'merchant_get_menu'])->name('api.merchant.menu');
+Route::post('/v2/menu', [menu::class, 'tambah_menu'])->name('api.merchant.menu.tambah');
 Route::post('/v2/order/status', [MerchantOrder::class, 'ubah_status'])->name('api.merchant.order.status');

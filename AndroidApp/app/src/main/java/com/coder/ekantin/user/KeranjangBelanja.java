@@ -65,13 +65,14 @@ public class KeranjangBelanja extends AppCompatActivity implements KeranjangAdap
     private void doSave(String lokasi,String idUser){
         String total = totalEntity.getName();
         if(!total.equals("")){
+            this.showDialog();
             try{
-                this.showDialog();
                 Call<MenuModel> call = APIService.Factory.create(getApplicationContext()).checkout(idUser,lokasi,total);
                 call.enqueue(new Callback<MenuModel>() {
                     @EverythingIsNonNull
                     @Override
                     public void onResponse(Call<MenuModel> call, Response<MenuModel> response) {
+                        hideDialog();
                         Intent intent = new Intent(KeranjangBelanja.this, DashboardUser.class);
                         startActivity(intent);
                         HelperUtils.pesan(getApplicationContext(),"Pesanan anda akan segera datang, mohon ditunggu!");

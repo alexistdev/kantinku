@@ -9,6 +9,7 @@ import com.coder.ekantin.model.OrderModel;
 import com.coder.ekantin.response.GetDetailTransaksi;
 import com.coder.ekantin.response.GetKeranjang;
 import com.coder.ekantin.response.GetMenu;
+import com.coder.ekantin.response.GetMenuMerchant;
 import com.coder.ekantin.response.GetOrder;
 import com.coder.ekantin.response.GetTransaksi;
 
@@ -73,6 +74,18 @@ public interface APIService {
     @POST(urlAPI2+"order/status")
     Call<OrderModel> ubahStatus(@Field("order_id") String orderId,
                                @Field("tipe") String tipe);
+
+    @GET(urlAPI2+"menu")
+    Call<GetMenuMerchant> getMenuMerchant(@Query("user_id") String userId);
+
+    @FormUrlEncoded
+    @POST(urlAPI2+"menu")
+    Call<MenuModel> tambahMenu(@Field("user_id") String userID,
+                               @Field("nama") String nama,
+                               @Field("harga") int harga,
+                               @Field("tipe") String tipe);
+
+
 
     class Factory {
         public static APIService create(Context mContext) {

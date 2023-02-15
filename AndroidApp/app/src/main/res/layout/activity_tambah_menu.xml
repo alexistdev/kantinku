@@ -55,18 +55,19 @@
             android:layout_marginStart="12sp"
             android:layout_marginTop="20sp"
             android:layout_marginEnd="12sp"
+            android:inputType="text"
             android:hint="Nama Menu"
             android:minHeight="48dp" />
 
 
         <EditText
-            android:id="@+id/txt_password2"
+            android:id="@+id/txt_harga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12sp"
             android:layout_marginTop="20sp"
             android:layout_marginEnd="12sp"
-            android:autofillHints="password"
+            android:inputType="text"
             android:hint="Harga"
             android:minHeight="48dp" />
 

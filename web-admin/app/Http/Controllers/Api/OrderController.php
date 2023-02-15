@@ -26,7 +26,7 @@ class OrderController extends Controller
             ], 404);
         } else {
             $merchant = Merchant::where('user_id',$request->user_id)->first();
-            if($merchant->count() > 0){
+            if($merchant != null){
                  $order = Ordermerchant::with('transaksi', 'menu')->where('status', 1)->orWhere('status', 2)->where('merchant_id', $merchant->id)->get();
                 if($order->count() > 0){
                     $data = [];
