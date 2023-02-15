@@ -5,9 +5,11 @@ import android.content.Context;
 import com.coder.ekantin.BuildConfig;
 import com.coder.ekantin.model.LoginModel;
 import com.coder.ekantin.model.MenuModel;
+import com.coder.ekantin.model.OrderModel;
 import com.coder.ekantin.response.GetDetailTransaksi;
 import com.coder.ekantin.response.GetKeranjang;
 import com.coder.ekantin.response.GetMenu;
+import com.coder.ekantin.response.GetOrder;
 import com.coder.ekantin.response.GetTransaksi;
 
 import java.util.concurrent.TimeUnit;
@@ -26,6 +28,7 @@ import retrofit2.http.Query;
 
 public interface APIService {
     String urlAPI = Constants.urlAPI;
+    String urlAPI2 = Constants.urlAPIMerchant;
 
     /** tambah item ke dalam keranjang */
     @FormUrlEncoded
@@ -61,6 +64,15 @@ public interface APIService {
 
     @GET(urlAPI+"cart")
     Call<GetKeranjang> getCart(@Query("user_id") String userId);
+
+    /** MERCHANT */
+    @GET(urlAPI2+"order")
+    Call<GetOrder> getOrder(@Query("user_id") String userId);
+
+    @FormUrlEncoded
+    @POST(urlAPI2+"order/status")
+    Call<OrderModel> ubahStatus(@Field("order_id") String orderId,
+                               @Field("tipe") String tipe);
 
     class Factory {
         public static APIService create(Context mContext) {

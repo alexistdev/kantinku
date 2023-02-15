@@ -17,64 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/menu1"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10sp"
-        android:layout_marginStart="10sp"
-        android:layout_marginEnd="10sp"
-        android:elevation="10px"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbtoolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txt_nama_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Mie Goreng"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txt_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:text="Pakai telur"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_nama_menu" />
-
-
-
-            <TextView
-                android:id="@+id/txt_harga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Rp.12.000"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.813"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_detail"
-                app:layout_constraintVertical_bias="0.0" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -87,7 +30,7 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu1">
+        app:layout_constraintTop_toBottomOf="@+id/tbtoolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -110,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:visibility="invisible"
                 android:layout_marginTop="4dp"
                 android:text="manis pakai gula"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +111,7 @@
                 android:padding="15dp"
                 android:text="Total" />
             <TextView
+                android:id="@+id/txt_total"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,7 +121,7 @@
                 android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:text="Rp. 15.000" />
+                android:text="Rp. 0" />
         </LinearLayout>
 
         <View
@@ -188,7 +133,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_proses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -199,7 +144,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linier2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_tolak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -220,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/txt_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -247,7 +192,7 @@
         android:layout_marginTop="16dp"
         android:text="Mega Purnamasari"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_id" />
 
     <TextView
         android:id="@+id/textView16"
@@ -260,14 +205,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/txt_lokasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="208dp"
+        android:layout_marginEnd="220dp"
+        android:gravity="start"
         android:text="Gedung G lantai 1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Button
+        android:id="@+id/btn_selesai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="SELESAI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_proses" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

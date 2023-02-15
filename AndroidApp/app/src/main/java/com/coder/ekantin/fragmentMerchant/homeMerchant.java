@@ -1,66 +1,125 @@
 package com.coder.ekantin.fragmentMerchant;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.coder.ekantin.R;
+import com.coder.ekantin.adapter.KeranjangAdapter;
+import com.coder.ekantin.adapter.OrderAdapter;
+import com.coder.ekantin.api.APIService;
+import com.coder.ekantin.api.Constants;
+import com.coder.ekantin.api.NoConnectivityException;
+import com.coder.ekantin.model.APIError;
+import com.coder.ekantin.model.OrderModel;
+import com.coder.ekantin.response.GetOrder;
+import com.coder.ekantin.utils.ErrorUtils;
+import com.coder.ekantin.utils.HelperUtils;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link homeMerchant#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
+
 public class homeMerchant extends Fragment {
+    private RecyclerView gridItem;
+    private OrderAdapter orderAdapter;
+    private List<OrderModel> daftarOrder;
+    private ProgressBar progressBar;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public homeMerchant() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment homeMerchant.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static homeMerchant newInstance(String param1, String param2) {
-        homeMerchant fragment = new homeMerchant();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_merchant, container, false);
+        View mview = inflater.inflate(R.layout.fragment_home_merchant, container, false);
+        this.dataInit(mview);
+
+        this.setupRecyclerView();
+        this.setData(getContext());
+        return mview;
+    }
+
+    private void dataInit(View mview) {
+        gridItem = mview.findViewById(R.id.rcOrder);
+        progressBar = mview.findViewById(R.id.progressBar);
+        this.hideDialog();
+    }
+
+    private void setData(Context mContext){
+        this.showDialog();
+        try{
+            SharedPreferences sharedPreferences = mContext.getSharedPreferences(
+                    Constants.KEY_USER, Context.MODE_PRIVATE);
+            String idUser = sharedPreferences.getString("idUser", "");
+            Call<GetOrder> call= APIService.Factory.create(mContext).getOrder(idUser);
+            call.enqueue(new Callback<GetOrder>() {
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<GetOrder> call, Response<GetOrder> response) {
+                    hideDialog();
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            daftarOrder = response.body().getDaftarOrder();
+                            orderAdapter.replaceData(daftarOrder);
+                        }
+                    } else {
+                        APIError error = ErrorUtils.parseError(response);
+                        if (error != null) {
+                            HelperUtils.pesan(mContext, error.message());
+                        }
+                    }
+                }
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<GetOrder> call, Throwable t) {
+                    hideDialog();
+                    if (t instanceof NoConnectivityException) {
+                        HelperUtils.pesan(mContext, t.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            hideDialog();
+            e.printStackTrace();
+            HelperUtils.pesan(mContext, e.getMessage());
+        }
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        daftarOrder = new ArrayList<>();
+        orderAdapter = new OrderAdapter(daftarOrder);
+        gridItem.setLayoutManager(linearLayoutManager);
+        gridItem.setAdapter(orderAdapter);
+    }
+
+    private void showDialog() {
+        if (progressBar.getVisibility() == View.INVISIBLE) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideDialog() {
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 }

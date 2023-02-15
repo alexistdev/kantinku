@@ -35,8 +35,8 @@
         </activity>
         <activity
             android:name=".user.DetailOrder"
-            android:parentActivityName=".user.DashboardUser"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -64,19 +64,14 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- <activity -->
-        <!-- android:name=".merchant.DashboardMerchant" -->
-        <!-- android:exported="false"> -->
-        <!-- <meta-data -->
-        <!-- android:name="android.app.lib_name" -->
-        <!-- android:value="" /> -->
-        <!-- </activity> &lt;!&ndash; <activity &ndash;&gt; -->
-        <!-- android:name=".user.DashboardUser" -->
-        <!-- android:exported="false"> -->
-        <!-- <meta-data -->
-        <!-- android:name="android.app.lib_name" -->
-        <!-- android:value="" /> -->
-        <!-- </activity> -->
+        </activity>
+        <activity
+            android:name=".merchant.DashboardMerchant"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.Lupapassword"
             android:exported="false">
@@ -84,15 +79,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-<!--         <activity-->
-<!--         android:name=".ui.Login"-->
-<!--         android:exported="false">-->
-<!--         <meta-data-->
-<!--         android:name="android.app.lib_name"-->
-<!--         android:value="" />-->
-<!--         </activity>-->
         <activity
-            android:name=".ui.Splashactivity"
+            android:name=".ui.Login"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.Daftar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -106,7 +101,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.Login"
+            android:name=".ui.Splashactivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
