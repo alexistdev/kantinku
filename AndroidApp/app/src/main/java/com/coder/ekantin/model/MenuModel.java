@@ -1,10 +1,12 @@
 package com.coder.ekantin.model;
 
+import com.coder.ekantin.api.NamaMerchantDeserializer;
 import com.coder.ekantin.api.UsernameDeserializer;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
 public class MenuModel {
+
     @SerializedName("id")
     private final String idMenu;
 

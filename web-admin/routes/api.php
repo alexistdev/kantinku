@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController as Login,
     App\Http\Controllers\Api\MenuController as menu,
-    App\Http\Controllers\Api\KeranjangController as cart;
+    App\Http\Controllers\Api\KeranjangController as cart,
+    App\Http\Controllers\Api\TransaksiController as trx;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/v1/cart', [cart::class, 'get_item'])->name('api.cart.list');
 Route::post('/v1/cart', [cart::class, 'add_item'])->name('api.cart.add');
 Route::delete('/v1/cart', [cart::class, 'delete_item'])->name('api.cart.delete');
 Route::post('/v1/checkout', [cart::class, 'check_out'])->name('api.checkout');
+Route::get('/v1/transaksi', [trx::class, 'get_transaksi'])->name('api.cart.transaksi');
+Route::get('/v1/transaksi/detail', [trx::class, 'list_detail'])->name('api.cart.detailtransaksi');

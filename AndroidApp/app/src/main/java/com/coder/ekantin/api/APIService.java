@@ -5,8 +5,10 @@ import android.content.Context;
 import com.coder.ekantin.BuildConfig;
 import com.coder.ekantin.model.LoginModel;
 import com.coder.ekantin.model.MenuModel;
+import com.coder.ekantin.response.GetDetailTransaksi;
 import com.coder.ekantin.response.GetKeranjang;
 import com.coder.ekantin.response.GetMenu;
+import com.coder.ekantin.response.GetTransaksi;
 
 import java.util.concurrent.TimeUnit;
 
@@ -47,8 +49,15 @@ public interface APIService {
     Call<LoginModel> loginUser(@Field("email") String email,
                                @Field("password") String password);
 
+    @GET(urlAPI+"transaksi/detail")
+    Call<GetDetailTransaksi> getDetail(@Query("transaksi_id") String transaksiId);
+
+
     @GET(urlAPI+"get_menu")
     Call<GetMenu> getMenu(@Query("tipe") String tipe);
+
+    @GET(urlAPI+"transaksi")
+    Call<GetTransaksi> getTransaksi(@Query("user_id") String userId);
 
     @GET(urlAPI+"cart")
     Call<GetKeranjang> getCart(@Query("user_id") String userId);
