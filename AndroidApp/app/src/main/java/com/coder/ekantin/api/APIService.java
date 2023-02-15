@@ -31,7 +31,12 @@ public interface APIService {
     Call<MenuModel> addCart(@Field("user_id") String userId,
                             @Field("menu_id") String menuId);
 
-
+    /** CHeckout */
+    @FormUrlEncoded
+    @POST(urlAPI+"checkout")
+    Call<MenuModel> checkout(@Field("user_id") String userId,
+                             @Field("lokasi") String lokasi,
+                             @Field("total") String total);
 
     @DELETE(urlAPI+"cart")
     Call<MenuModel> deleteItem(@Query("user_id") String userId,

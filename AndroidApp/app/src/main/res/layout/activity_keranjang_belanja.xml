@@ -42,7 +42,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/ed_lokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:autofillHints="name"
+                android:hint="Isi lokasi pengantaran (Gedung G Lt )"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
                 android:id="@+id/rcItem"
                 android:layout_width="341dp"
                 android:layout_height="wrap_content"
@@ -120,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="420dp"
                 android:text="CHECKOUT"
+                android:visibility="invisible"
                 android:layout_gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
                 app:layout_constraintEnd_toEndOf="parent"
