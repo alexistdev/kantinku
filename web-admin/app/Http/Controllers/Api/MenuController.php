@@ -11,12 +11,17 @@ class MenuController extends Controller
 {
     public function get_menu(Request $request)
     {
+
+
         $rules = [
             'tipe' => 'required|numeric',
         ];
         $validator = Validator::make($request->all(), $rules);
         if (!$validator->fails()) {
-            $menu = Menu::where('tipe',$request->tipe)->get();
+            $menu = Menu::with(["merchant" => function($q){
+                $q->where('status', '=', 1);
+            }])->where('tipe',$request->tipe)->where('status',1)->get();
+            $menu->whereNotNull('merchant');
             if(!$menu->isEmpty()){
                 return response()->json([
                     'status' => true,

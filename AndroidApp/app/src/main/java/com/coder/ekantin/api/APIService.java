@@ -15,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -29,6 +30,12 @@ public interface APIService {
     @POST(urlAPI+"cart")
     Call<MenuModel> addCart(@Field("user_id") String userId,
                             @Field("menu_id") String menuId);
+
+
+
+    @DELETE(urlAPI+"cart")
+    Call<MenuModel> deleteItem(@Query("user_id") String userId,
+                            @Query("item_id") String itemId);
 
     @FormUrlEncoded
     @POST(urlAPI+"auth")

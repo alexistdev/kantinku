@@ -16,4 +16,8 @@ class Menu extends Model
     public function transaksi(){
         return $this->belongsTo(Detailtransaksi::class,'id','menu_id');
     }
+
+    public function merchant(){
+        return $this->belongsTo(Merchant::class);
+    }
 }

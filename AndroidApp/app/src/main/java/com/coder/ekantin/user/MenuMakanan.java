@@ -48,7 +48,10 @@ public class MenuMakanan extends AppCompatActivity implements MenuAdapter.ClickL
             setTitleByTipe = "Menu Makanan";
         } else {
             getTipe = extras.getString("tipe");
-            setTitleByTipe = "Menu Minuman";
+            setTitleByTipe = "Menu Makanan";
+            if(getTipe.equals("2")){
+                setTitleByTipe = "Menu Minuman";
+            }
         }
         if (getSupportActionBar() != null) {
             setTitle(setTitleByTipe);
@@ -58,7 +61,6 @@ public class MenuMakanan extends AppCompatActivity implements MenuAdapter.ClickL
         this.dataInit();
         this.setupRecyclerView();
         this.setData(this, getTipe);
-        HelperUtils.pesan(getApplicationContext(),getTipe);
     }
 
     @Override

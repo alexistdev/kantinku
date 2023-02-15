@@ -29,21 +29,24 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuHolder>{
     }
 
     public static class MyMenuHolder extends RecyclerView.ViewHolder {
-        private final TextView mNamaMenu,mHarga;
+        private final TextView mNamaMenu,mHarga,mMerchant;
 
         MyMenuHolder(@NonNull View itemView) {
             super(itemView);
             mNamaMenu = itemView.findViewById(R.id.txt_nama_add);
             mHarga = itemView.findViewById(R.id.txt_harga);
+            mMerchant = itemView.findViewById(R.id.txt_merchant);
         }
     }
 
     @Override
     public void onBindViewHolder (@NonNull MenuAdapter.MyMenuHolder holder, final int position){
         String namaMenu = mMenuList.get(position).getNamaMenu();
+        String namaMerchant = mMenuList.get(position).getNamaMerchant();
         String hargaMenu = mMenuList.get(position).getHargaMenu();
         String idMenu = mMenuList.get(position).getIdMenu();
         holder.mNamaMenu.setText(namaMenu);
+        holder.mMerchant.setText(namaMerchant);
         holder.mHarga.setText(hargaMenu);
         holder.mNamaMenu.setOnClickListener(new View.OnClickListener() {
             @Override

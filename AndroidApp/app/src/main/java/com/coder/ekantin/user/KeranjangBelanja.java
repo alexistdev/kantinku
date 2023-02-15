@@ -4,32 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.coder.ekantin.R;
 import com.coder.ekantin.adapter.KeranjangAdapter;
-import com.coder.ekantin.adapter.MenuAdapter;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.Constants;
 import com.coder.ekantin.api.NoConnectivityException;
 import com.coder.ekantin.model.APIError;
 import com.coder.ekantin.model.MenuModel;
 import com.coder.ekantin.response.GetKeranjang;
-import com.coder.ekantin.response.GetMenu;
 import com.coder.ekantin.utils.ErrorUtils;
 import com.coder.ekantin.utils.HelperUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,9 +76,40 @@ public class KeranjangBelanja extends AppCompatActivity implements KeranjangAdap
     }
 
     @Override
-    public void dataItemKeranjang(String idMenu) {
-        HelperUtils.pesan(getApplicationContext(),idMenu);
-//        this.addToCart(idMenu,getApplicationContext());
+    public void dataItemKeranjang(String idItem) {
+        this.doDelete(getApplicationContext(),idItem);
+    }
+
+    public void doDelete(Context mContext,String idItem)
+    {
+        this.showDialog();
+        try{
+            SharedPreferences sharedPreferences = getApplication().getSharedPreferences(
+                    Constants.KEY_USER, Context.MODE_PRIVATE);
+            String idUser = sharedPreferences.getString("idUser", "");
+            Call<MenuModel> call= APIService.Factory.create(mContext).deleteItem(idUser,idItem);
+            call.enqueue(new Callback<MenuModel>() {
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<MenuModel> call, Response<MenuModel> response) {
+                    hideDialog();
+                    setData(mContext);
+                    HelperUtils.pesan(mContext,"Item berhasil dihapus");
+                }
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<MenuModel> call, Throwable t) {
+                    hideDialog();
+                    if (t instanceof NoConnectivityException) {
+                        HelperUtils.pesan(mContext, t.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            hideDialog();
+            e.printStackTrace();
+            HelperUtils.pesan(getApplicationContext(), e.getMessage());
+        }
     }
 
     public void setData(Context mContext){

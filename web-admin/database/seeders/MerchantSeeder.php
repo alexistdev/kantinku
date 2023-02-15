@@ -18,7 +18,7 @@ class MerchantSeeder extends Seeder
     {
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $merchant = [
-            array('user_id'=>2,'name' => 'Siomay','phone'=>'08123456789','created_at' => $date,'updated_at' => $date),
+            array('user_id'=>2,'name' => 'GOPAL','phone'=>'08123456789','created_at' => $date,'updated_at' => $date),
         ];
         Merchant::insert($merchant);
     }

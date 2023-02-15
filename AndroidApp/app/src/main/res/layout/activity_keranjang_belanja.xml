@@ -99,7 +99,7 @@
                         android:background="#0000"
                         android:gravity="center|end"
                         android:padding="15dp"
-                        android:text="Rp. 15.000"
+                        android:text="Rp. 0"
                         android:textColor="@color/orange"
                         android:textSize="20sp"
                         android:textStyle="bold" />
