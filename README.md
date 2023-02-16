@@ -22,6 +22,7 @@ Kantinku adalah aplikasi pemesanan makanan berbasis Android dan Web Service, den
     <td><img src='https://i.postimg.cc/mrHqHdkv/dashboard-admin.png' border='0' alt='login' width="auto" height="400px"/></td>
   </tr>
   </table>
+  
 ## Info
 - Bahasa Pemrograman Java, dengan tools Android Studio
 - Rest API menggunakan Laravel 9.42
