@@ -24,6 +24,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('jumlah');
+            $table->tinyInteger('status_transaksi')->default(1);
             $table->timestamps();
         });
     }

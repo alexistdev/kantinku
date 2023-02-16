@@ -52,7 +52,7 @@ class MerchantController extends Controller
                 ->make(true);
         }
         return view('admin.merchant.merchant', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Merchant | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
         ));
@@ -64,7 +64,7 @@ class MerchantController extends Controller
     public function create()
     {
         return view('admin.merchant.addmerchant', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Merchant | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
         ));

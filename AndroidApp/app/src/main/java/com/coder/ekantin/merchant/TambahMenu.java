@@ -1,19 +1,15 @@
 package com.coder.ekantin.merchant;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.RadioButton;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import com.coder.ekantin.R;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.Constants;
@@ -21,10 +17,8 @@ import com.coder.ekantin.api.NoConnectivityException;
 import com.coder.ekantin.entity.TotalEntity;
 import com.coder.ekantin.model.APIError;
 import com.coder.ekantin.model.MenuModel;
-import com.coder.ekantin.ui.Login;
 import com.coder.ekantin.utils.ErrorUtils;
 import com.coder.ekantin.utils.HelperUtils;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,12 +41,7 @@ public class TambahMenu extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
         this.dataInit();
-        mSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doSubmit();
-            }
-        });
+        mSimpan.setOnClickListener(v -> doSubmit());
     }
 
     private void doSubmit(){
@@ -108,10 +97,7 @@ public class TambahMenu extends AppCompatActivity {
     }
 
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_pirates:
                 if (checked)

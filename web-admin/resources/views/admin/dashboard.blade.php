@@ -1,4 +1,4 @@
-<x-upcube.template-layout >
+<x-upcube.template-layout :title="$judul" >
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 row-cols-xxl-4">
         <div class="col">
             <div class="card radius-10 bg-gradient-cosmic">
@@ -6,7 +6,7 @@
                     <div class="d-flex align-items-center">
                         <div class="me-auto">
                             <p class="mb-0 text-white">Total Customer</p>
-                            <h4 class="my-1 text-white">1</h4>
+                            <h4 class="my-1 text-white">{{$jmlCustomer}}</h4>
                         </div>
                         <div id="chart1"></div>
                     </div>
@@ -19,7 +19,7 @@
                     <div class="d-flex align-items-center">
                         <div class="me-auto">
                             <p class="mb-0 text-white">Total Merchant</p>
-                            <h4 class="my-1 text-white">1</h4>
+                            <h4 class="my-1 text-white">{{$jmlMerchant}}</h4>
                         </div>
                         <div id="chart2"></div>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="d-flex align-items-center">
                         <div class="me-auto">
                             <p class="mb-0 text-white">Transaksi</p>
-                            <h4 class="my-1 text-white">1</h4>
+                            <h4 class="my-1 text-white">{{$jmlTransaksi}}</h4>
                         </div>
                         <div id="chart3"></div>
                     </div>

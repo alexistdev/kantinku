@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import com.coder.ekantin.R;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.Constants;
@@ -23,11 +21,9 @@ import com.coder.ekantin.user.DashboardUser;
 import com.coder.ekantin.utils.ErrorUtils;
 import com.coder.ekantin.utils.HelperUtils;
 import com.coder.ekantin.utils.SessionUtils;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

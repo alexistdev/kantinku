@@ -3,18 +3,14 @@ package com.coder.ekantin.fragmentUser;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import com.coder.ekantin.R;
-import com.coder.ekantin.adapter.KeranjangAdapter;
 import com.coder.ekantin.adapter.TransaksiAdapter;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.Constants;
@@ -24,10 +20,8 @@ import com.coder.ekantin.model.TransaksiModel;
 import com.coder.ekantin.response.GetTransaksi;
 import com.coder.ekantin.utils.ErrorUtils;
 import com.coder.ekantin.utils.HelperUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,15 +42,12 @@ public class historyUser extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View mview = inflater.inflate(R.layout.fragment_history_user, container, false);
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(
                 Constants.KEY_USER, Context.MODE_PRIVATE);
         String idUser = sharedPreferences.getString("idUser", "");
         this.dataInit(mview);
         this.setupRecyclerView();
-
         this.setData(getContext(),idUser);
         return mview;
     }

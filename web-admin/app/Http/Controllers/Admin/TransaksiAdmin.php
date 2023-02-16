@@ -48,7 +48,7 @@ class TransaksiAdmin extends Controller
                 ->make(true);
         }
         return view('admin.merchant.transaksi', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Transaksi | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
         ));

@@ -1,4 +1,4 @@
-<x-upcube.template-layout>
+<x-upcube.template-layout :title="$judul">
     @push('customCSS')
         <link href="{{asset('template/rocker/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}"
               rel="stylesheet"/>
@@ -17,9 +17,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <button type="button" class="btn btn-primary">Add</button>
-        </div>
+
     </div>
     <!--end breadcrumb-->
     <h6 class="mb-0 text-uppercase">Master Data Merchant</h6>

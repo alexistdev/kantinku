@@ -5,7 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <meta name="author" content="AlexistDev">
+    <meta name="description" content="Software Engineer">
+    <title>{{$title}}</title>
     <x-upcube.header-layout />
     @stack('customCSS')
 </head>

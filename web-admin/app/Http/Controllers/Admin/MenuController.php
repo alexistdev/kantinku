@@ -43,7 +43,7 @@ class MenuController extends Controller
                 ->make(true);
         }
         return view('admin.merchant.menu', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Menu | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
             'id' => $id,
@@ -56,7 +56,7 @@ class MenuController extends Controller
 
         $data = Merchant::findOrFail(base64_decode($id));
         return view('admin.merchant.addmenu', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Tambah Menu | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
             'dataMerchant' => $data,

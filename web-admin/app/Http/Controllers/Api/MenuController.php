@@ -85,6 +85,13 @@ class MenuController extends Controller
         } else {
             $merchant = Merchant::where('user_id',$request->user_id)->first();
             if($merchant != null){
+                $menu = new Menu();
+                $menu->merchant_id = $merchant->id;
+                $menu->nama = strtoupper($request->nama);
+                $menu->harga = $request->harga;
+                $menu->tipe = $request->tipe;
+                $menu->status = 1;
+                $menu->save();
                 return response()->json([
                     'status' => true,
                     'message' => "berhasil",

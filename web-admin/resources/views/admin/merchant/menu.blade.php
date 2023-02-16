@@ -1,4 +1,4 @@
-<x-upcube.template-layout>
+<x-upcube.template-layout :title="$judul">
     @push('customCSS')
         <link href="{{asset('template/rocker/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}"
               rel="stylesheet"/>
