@@ -4,8 +4,25 @@
 
 Kantinku adalah aplikasi pemesanan makanan berbasis Android dan Web Service, dengan spesifikasi sebagai berikut:
 
-<a href='https://postimg.cc/bSkxMZFk' target='_blank'><img src='https://i.postimg.cc/bSkxMZFk/login.png' border='0' alt='login'/></a>
+## Halaman User
+<table>
+  <tr>
+    <td><img src='https://i.postimg.cc/bSkxMZFk/login.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/3NHvnwK8/dashboarduser.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/GmNJvds2/menu.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/QxvHbtSR/cart.png' border='0' alt='login' height="400px"/></td>
+  </tr>
+  </table>
+  
+## Halaman Merchant
 
+## Halaman Administrator
+<table>
+  <tr>
+    <td><img src='https://i.postimg.cc/mrHqHdkv/dashboard-admin.png' border='0' alt='login' width="auto" height="400px"/></td>
+  </tr>
+  </table>
+## Info
 - Bahasa Pemrograman Java, dengan tools Android Studio
 - Rest API menggunakan Laravel 9.42
 - Database MySQL
@@ -24,3 +41,16 @@ Cara installasi adalah sebagai berikut:
 - ketikkan perintah: php artisan serve
 - Buka dengan android studio file di directory Android-File.
 - Buka file config.java dan lakukan pengaturan sesuai dengan URL anda.
+
+## Credential
+User:<br/>
+user@gmail.com<br/>
+1234<br/><br/>
+
+Merchant:<br/>
+merchant@gmail.com<br/>
+1234<br/><br/>
+
+Administrator:<br/>
+admin@gmail.com<br/>
+1234<br/><br/>
