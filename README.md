@@ -38,9 +38,12 @@ Cara installasi adalah sebagai berikut:
 - ketikkan di terminal: php artisan key:generate
 - ketikkan di terminal : npm install && npm run dev
 - ketikkan di terminal : php artisan migrate:fresh --seed
-- ketikkan perintah: php artisan serve
+- buka cmd, ketik: ipconfig dan catat ip local pc anda.
+- ketikkan perintah: php artisan serve --host=[ip local anda] --port=8000 <br/>
+  contoh: php artisan serve --host=192.168.0.103 --port=8000
 - Buka dengan android studio file di directory Android-File.
-- Buka file config.java dan lakukan pengaturan sesuai dengan URL anda.
+- Buka file api/constants.java dan lakukan pengaturan sesuai dengan IP anda.
+<img src='https://i.postimg.cc/XNzh7GVG/config.png' border='0' alt='login' width="auto" height="400px"/>
 
 ## Credential
 User:<br/>
