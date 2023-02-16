@@ -18,29 +18,30 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $merchant = User::with('merchant')->merchantonly()->orderBy('id', 'desc')->get();
-            return DataTables::of($merchant)
+            $user = User::withCount('transaksi')->where('role_id',3)->orderBy('id', 'desc')->get();
+            return DataTables::of($user)
                 ->addIndexColumn()
                 ->editColumn('created_at', function ($request) {
                     return $request->created_at->format('d-m-Y H:i:s');
                 })
-                ->editColumn('name', function ($request) {
-                    return ucwords($request->merchant?->name);
+                ->editColumn('total', function ($request) {
+                    return $request->transaksi_count;
                 })
-                ->editColumn('phone', function ($request) {
-                    return $request->merchant?->phone;
-                })
-                ->editColumn('status', function ($request) {
-                    if ($request->status != 1) {
-                        $str = "Suspend";
-                    } else {
-                        $str = "Aktif";
-                    }
-                    return $str;
-                })
+//                ->editColumn('phone', function ($request) {
+//                    return $request->merchant?->phone;
+//                })
+//                ->editColumn('status', function ($request) {
+//                    if ($request->status != 1) {
+//                        $str = "Suspend";
+//                    } else {
+//                        $str = "Aktif";
+//                    }
+//                    return $str;
+//                })
                 ->addColumn('action', function ($row) {
-                    $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
-                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> MENU</a>";
+//                    $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
+                    $url = "";
+                    $btn = " <a href=\"$url\" class=\"btn btn-outline-danger px-5\"> HAPUS</a>";
 //                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
                     return $btn;
                 })
@@ -48,7 +49,7 @@ class CustomerController extends Controller
                 ->make(true);
         }
         return view('admin.merchant.customer', array(
-            'judul' => "Dashboard Guru | FavoriteIDN",
+            'judul' => "Dashboard Customer | DSC EKANTIN",
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
         ));

@@ -1,4 +1,4 @@
-<x-upcube.template-layout>
+<x-upcube.template-layout :title="$judul">
     @push('customCSS')
         <link href="{{asset('template/rocker/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}"
               rel="stylesheet"/>
@@ -24,23 +24,18 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tabelMerchant2" class="table table-striped table-bordered" style="width:100%">
+                <table id="tableCustomer" class="table table-striped table-bordered" style="width:100%">
                     <thead class="table-light">
                     <tr>
-                        <th class="text-center">No.</th>
-                        <th class="text-center">Nama</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">NO</th>
+                        <th class="text-center">NAMA</th>
+                        <th class="text-center">EMAIL</th>
+                        <th class="text-center">TOTAL TRANSAKSI</th>
+                        <th class="text-center">ACTION</th>
                     </tr>
                     </thead><!-- end thead -->
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mega Purnamasari</td>
-                            <td>mega@gmail.com</td>
-                            <td class="text-center"><button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Hapus</button></td>
-                        </tr>
+
                     </tbody>
                 </table> <!-- end table -->
             </div>
@@ -55,8 +50,8 @@
         <script>
 
             $(document).ready(function () {
-                let base_url = '{{route('adm.merchant')}}';
-                $('#tabelMerchant').DataTable({
+                let base_url = '{{route('adm.merchant.customer')}}';
+                $('#tableCustomer').DataTable({
                     responsive: true,
                     processing: true,
                     serverSide: true,
@@ -80,8 +75,7 @@
                         },
                         {data: 'name', class: 'text-left'},
                         {data: 'email', class: 'text-left'},
-                        {data: 'phone', class: 'text-left'},
-                        {data: 'status', class: 'text-center'},
+                        {data: 'total', class: 'text-center'},
                         {data: 'action', class: 'text-center', width: '15%', orderable: false},
                     ],
                     "bDestroy": true

@@ -24,28 +24,20 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tabelMerchant2" class="table table-striped table-bordered" style="width:100%">
+                <table id="tableTransaksi" class="table table-striped table-bordered" style="width:100%">
                     <thead class="table-light">
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">Merchant</th>
-                        <th class="text-center">Customer</th>
-                        <th class="text-center">Harga</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">ORDER ID</th>
+                        <th class="text-center">USER</th>
+                        <th class="text-center">TOTAL</th>
+                        <th class="text-center">LOKASI</th>
+                        <th class="text-center">STATUS</th>
+                        <th class="text-center">ACTION</th>
                     </tr>
                     </thead><!-- end thead -->
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Siomay</td>
-                            <td>Mega Purnamasari</td>
-                            <td>Rp. 10.000</td>
-                            <td>Pending</td>
-                            <td class="text-center"><button class="btn btn-primary">Detail</button>
-                            <button class="btn btn-warning">Batalkan</button>
-                            <button class="btn btn-danger">Hapus</button></td>
-                        </tr>
+
                     </tbody>
                 </table> <!-- end table -->
             </div>
@@ -60,8 +52,8 @@
         <script>
 
             $(document).ready(function () {
-                let base_url = '{{route('adm.merchant')}}';
-                $('#tabelMerchant').DataTable({
+                let base_url = '{{route('adm.merchant.transaksi')}}';
+                $('#tableTransaksi').DataTable({
                     responsive: true,
                     processing: true,
                     serverSide: true,
@@ -83,9 +75,10 @@
                                 return meta.row + meta.settings._iDisplayStart + 1; //auto increment
                             }
                         },
-                        {data: 'name', class: 'text-left'},
-                        {data: 'email', class: 'text-left'},
-                        {data: 'phone', class: 'text-left'},
+                        {data: 'idTransaksi', class: 'text-left'},
+                        {data: 'user.name', class: 'text-left'},
+                        {data: 'total', class: 'text-left'},
+                        {data: 'lokasi', class: 'text-left'},
                         {data: 'status', class: 'text-center'},
                         {data: 'action', class: 'text-center', width: '15%', orderable: false},
                     ],
