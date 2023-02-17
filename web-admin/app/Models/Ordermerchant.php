@@ -15,7 +15,7 @@ class Ordermerchant extends Model
      * status = 3  : selesai
      */
 
-    protected $fillable = ['id','transaksi_id','menu_id','merchant_id','lokasi','catatan'];
+    protected $fillable = ['id','transaksi_id','detailtransaksi_id','menu_id','merchant_id','lokasi','catatan','status'];
 
     public function transaksi()
     {

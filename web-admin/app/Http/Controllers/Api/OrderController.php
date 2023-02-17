@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Detailtransaksi;
 use App\Models\Menu;
 use App\Models\Merchant;
 use App\Models\Ordermerchant;
@@ -77,6 +78,12 @@ class OrderController extends Controller
                        Ordermerchant::where('id',$request->order_id)->update([
                            'status'=> $request->tipe,
                        ]);
+                        Detailtransaksi::where('id',$order->detailtransaksi_id)->update([
+                            'status' => $request->tipe,
+                        ]);
+                        Transaksi::where('id',$order->transaksi_id)->update([
+                            'status'=> $request->tipe,
+                        ]);
                        return response()->json([
                            'status' => true,
                            'message' => "berhasil",

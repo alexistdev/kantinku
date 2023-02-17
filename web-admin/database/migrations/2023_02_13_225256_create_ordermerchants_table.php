@@ -19,6 +19,10 @@ return new class extends Migration
                 ->constrained('transaksis')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('detailtransaksi_id')
+                ->constrained('detailtransaksis')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('menu_id')
                 ->constrained('menus')
                 ->onUpdate('cascade')

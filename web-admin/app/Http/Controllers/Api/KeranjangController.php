@@ -158,19 +158,24 @@ class KeranjangController extends Controller
                     $idTransaksi = $transaksi->id;
                     //merchant
                     foreach($items as $item){
+                        $detail = new Detailtransaksi();
+                        $detail->transaksi_id = $idTransaksi;
+                        $detail->menu_id = $item->menu_id;
+                        $detail->jumlah = $item->menu->harga ?? 0;
+                        $detail->status = 1;
+                        $detail->save();
+                        $idDetail = $detail->id;
+
                         $order = new Ordermerchant();
                         $order->transaksi_id = $idTransaksi;
+                        $order->detailtransaksi_id = $idDetail;
                         $order->menu_id = $item->menu_id;
                         $order->merchant_id = $item->menu->merchant_id;
                         $order->lokasi = $request->lokasi;
                         $order->catatan = $item->catatan ?? "";
                         $order->save();
 
-                        $detail = new Detailtransaksi();
-                        $detail->transaksi_id = $idTransaksi;
-                        $detail->menu_id = $item->menu_id;
-                        $detail->jumlah = $item->menu->harga ?? 0;
-                        $detail->save();
+
                     }
                     Keranjang::where('user_id',$request->user_id)->delete();
                     DB::commit();
