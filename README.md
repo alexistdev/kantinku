@@ -4,6 +4,26 @@
 
 Kantinku adalah aplikasi pemesanan makanan berbasis Android dan Web Service, dengan spesifikasi sebagai berikut:
 
+## Halaman User
+<table>
+  <tr>
+    <td><img src='https://i.postimg.cc/bSkxMZFk/login.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/3NHvnwK8/dashboarduser.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/GmNJvds2/menu.png' border='0' alt='login' height="400px"/></td>
+    <td><img src='https://i.postimg.cc/QxvHbtSR/cart.png' border='0' alt='login' height="400px"/></td>
+  </tr>
+  </table>
+  
+## Halaman Merchant
+
+## Halaman Administrator
+<table>
+  <tr>
+    <td><img src='https://i.postimg.cc/mrHqHdkv/dashboard-admin.png' border='0' alt='login' width="auto" height="400px"/></td>
+  </tr>
+  </table>
+  
+## Info
 - Bahasa Pemrograman Java, dengan tools Android Studio
 - Rest API menggunakan Laravel 9.42
 - Database MySQL
@@ -19,6 +39,22 @@ Cara installasi adalah sebagai berikut:
 - ketikkan di terminal: php artisan key:generate
 - ketikkan di terminal : npm install && npm run dev
 - ketikkan di terminal : php artisan migrate:fresh --seed
-- ketikkan perintah: php artisan serve
+- buka cmd, ketik: ipconfig dan catat ip local pc anda.
+- ketikkan perintah: php artisan serve --host=[ip local anda] --port=8000 <br/>
+  contoh: php artisan serve --host=192.168.0.103 --port=8000
 - Buka dengan android studio file di directory Android-File.
-- Buka file config.java dan lakukan pengaturan sesuai dengan URL anda.
+- Buka file api/constants.java dan lakukan pengaturan sesuai dengan IP anda.
+<img src='https://i.postimg.cc/XNzh7GVG/config.png' border='0' alt='login' width="auto" height="400px"/>
+
+## Credential
+User:<br/>
+user@gmail.com<br/>
+1234<br/><br/>
+
+Merchant:<br/>
+merchant@gmail.com<br/>
+1234<br/><br/>
+
+Administrator:<br/>
+admin@gmail.com<br/>
+1234<br/><br/>
