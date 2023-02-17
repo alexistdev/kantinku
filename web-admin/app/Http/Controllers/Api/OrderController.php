@@ -79,10 +79,10 @@ class OrderController extends Controller
                            'status'=> $request->tipe,
                        ]);
                         Detailtransaksi::where('id',$order->detailtransaksi_id)->update([
-                            'status' => $request->tipe,
+                            'status_transaksi' => $request->tipe,
                         ]);
                         Transaksi::where('id',$order->transaksi_id)->update([
-                            'status'=> $request->tipe,
+                            'statusTransaksi'=> $request->tipe,
                         ]);
                        return response()->json([
                            'status' => true,

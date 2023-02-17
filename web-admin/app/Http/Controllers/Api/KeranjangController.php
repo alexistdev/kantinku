@@ -162,7 +162,7 @@ class KeranjangController extends Controller
                         $detail->transaksi_id = $idTransaksi;
                         $detail->menu_id = $item->menu_id;
                         $detail->jumlah = $item->menu->harga ?? 0;
-                        $detail->status = 1;
+                        $detail->status_transaksi = 1;
                         $detail->save();
                         $idDetail = $detail->id;
 
