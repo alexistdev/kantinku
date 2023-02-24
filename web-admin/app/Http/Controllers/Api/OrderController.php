@@ -28,7 +28,11 @@ class OrderController extends Controller
         } else {
             $merchant = Merchant::where('user_id',$request->user_id)->first();
             if($merchant != null){
-                 $order = Ordermerchant::with('transaksi', 'menu')->where('status', 1)->orWhere('status', 2)->where('merchant_id', $merchant->id)->get();
+                 $order = Ordermerchant::with('transaksi', 'menu')->where('merchant_id', $merchant->id)
+                     ->where(function ($q) {
+                         return $q->where('status', 1)->orWhere('status', 2);
+                     }) ->where('status', 1)->get();
+
                 if($order->count() > 0){
                     $data = [];
                     foreach ($order as $row) {
@@ -45,7 +49,7 @@ class OrderController extends Controller
                     }
                     return response()->json([
                         'status' => true,
-                        'message' => "berhasil",
+                        'message' => "berhasil 2",
                         'data' => $data,
                     ], 200);
                 }

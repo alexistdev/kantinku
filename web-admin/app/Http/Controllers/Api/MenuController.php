@@ -103,4 +103,32 @@ class MenuController extends Controller
             ], 401);
         }
     }
+
+    public function delete_menu(Request $request){
+        $rules = [
+            'menu_id' => 'required|numeric',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => "data tidak lengkap",
+            ], 404);
+        } else {
+            $menu = Menu::find($request->menu_id);
+            if($menu != null){
+                Menu::where('id',$request->menu_id)->update([
+                    'status' => 2,
+                ]);
+                return response()->json([
+                    'status' => true,
+                    'message' => "data berhasil dihapus",
+                ], 200);
+            }
+            return response()->json([
+                'status' => false,
+                'message' => "data tidak ditemukan",
+            ], 404);
+        }
+    }
 }
