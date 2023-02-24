@@ -4,23 +4,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.coder.ekantin.R;
-import com.coder.ekantin.model.MenuModel;
 import com.coder.ekantin.model.MenuModelMerchant;
-import com.coder.ekantin.utils.HelperUtils;
-
 import java.util.List;
 
 public class MenuMerchantAdapter extends RecyclerView.Adapter<MenuMerchantAdapter.MyMenuHolder> {
 
     private List<MenuModelMerchant> mMenuList;
+    public MenuMerchantAdapter.ClickListener clickListener;
 
-    public MenuMerchantAdapter(List<MenuModelMerchant> mMenuList) {
+    public MenuMerchantAdapter(List<MenuModelMerchant> mMenuList, MenuMerchantAdapter.ClickListener clickListener) {
         this.mMenuList = mMenuList;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -42,20 +39,15 @@ public class MenuMerchantAdapter extends RecyclerView.Adapter<MenuMerchantAdapte
         }
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull MyMenuHolder holder, int position) {
         String namaMenu = mMenuList.get(position).getNama();
+        String idMenu = mMenuList.get(position).getIdMenu();
         String harga = mMenuList.get(position).getHarga();
         String ciTotal = holder.itemView.getContext().getString(R.string.rupiah, harga);
         holder.mNamaMenu.setText(namaMenu);
         holder.mHarga.setText(ciTotal);
-        holder.mNamaMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HelperUtils.pesan(v.getContext(), "Error 404");
-            }
-        });
+        holder.mNamaMenu.setOnClickListener(v -> clickListener.dataItemKeranjang(idMenu));
     }
 
     @Override
@@ -68,5 +60,8 @@ public class MenuMerchantAdapter extends RecyclerView.Adapter<MenuMerchantAdapte
         notifyDataSetChanged();
     }
 
+    public interface ClickListener{
+        void dataItemKeranjang(String msg);
+    }
 
 }

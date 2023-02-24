@@ -76,6 +76,9 @@ public interface APIService {
     @GET(urlAPI2+"order")
     Call<GetOrder> getOrder(@Query("user_id") String userId);
 
+    @DELETE(urlAPI2+"menu")
+    Call<MenuModel> deleteMenu(@Query("menu_id") String menuId);
+
     @FormUrlEncoded
     @POST(urlAPI2+"order/status")
     Call<OrderModel> ubahStatus(@Field("order_id") String orderId,

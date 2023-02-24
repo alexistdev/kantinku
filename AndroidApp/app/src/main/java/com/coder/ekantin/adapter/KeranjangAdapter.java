@@ -52,12 +52,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.MyKe
         String idMenu = mMenuList.get(position).getIdMenu();
         holder.mNamaMenu.setText(namaMenu);
         holder.mHarga.setText(hargaMenu);
-        holder.mHapus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickListener.dataItemKeranjang(idMenu);
-            }
-        });
+        holder.mHapus.setOnClickListener(v -> clickListener.dataItemKeranjang(idMenu));
     }
 
     @Override
