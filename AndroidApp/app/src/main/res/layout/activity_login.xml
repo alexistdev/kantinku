@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Lupa password?"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txt_daftar"

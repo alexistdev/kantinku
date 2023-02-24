@@ -53,6 +53,12 @@ public interface APIService {
     Call<LoginModel> loginUser(@Field("email") String email,
                                @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST(urlAPI+"auth/register")
+    Call<LoginModel> daftarUser(@Field("nama") String nama,
+                                @Field("email") String email,
+                                @Field("password") String password);
+
     @GET(urlAPI+"transaksi/detail")
     Call<GetDetailTransaksi> getDetail(@Query("transaksi_id") String transaksiId);
 

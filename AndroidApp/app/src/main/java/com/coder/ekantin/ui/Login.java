@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import com.coder.ekantin.R;
 import com.coder.ekantin.api.APIService;
 import com.coder.ekantin.api.Constants;
@@ -33,6 +35,7 @@ public class Login extends AppCompatActivity {
     private ProgressBar progressBar;
     private EditText mEmail,mPassword;
     private Button mLogin;
+    private TextView mDaftar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,10 @@ public class Login extends AppCompatActivity {
         this.initData();
         this.checkSession();
         mLogin.setOnClickListener(v -> doLogin());
+        mDaftar.setOnClickListener(v -> redirecTo(Daftar.class));
     }
+
+
 
     private void checkLogin(String email, String password){
 
@@ -125,6 +131,7 @@ public class Login extends AppCompatActivity {
         mEmail = findViewById(R.id.ed_email);
         mPassword = findViewById(R.id.ed_password);
         mLogin = findViewById(R.id.btn_login);
+        mDaftar = findViewById(R.id.txt_daftar);
         progressBar = findViewById(R.id.progressBar);
     }
 
