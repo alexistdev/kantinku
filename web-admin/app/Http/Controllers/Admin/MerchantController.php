@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MerchantRequest;
 use App\Http\Traits\AdminTrait;
 use App\Models\Merchant;
 use Exception;
@@ -45,7 +46,7 @@ class MerchantController extends Controller
                 ->addColumn('action', function ($row) {
                     $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
                     $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> MENU</a>";
-//                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
+                    $btn = $btn . " <a href=\"#\" class=\"btn btn-outline-danger px-5 open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#modalHapus\"> Delete</i></a>";
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -109,7 +110,7 @@ class MerchantController extends Controller
                 $merchant->phone = $request->phone;
                 $merchant->save();
                 DB::commit();
-                return redirect(route('adm.merchant'))->with(['success' => "Pertanyaan berhasil ditambahkan!"]);
+                return redirect(route('adm.merchant'))->with(['success' => "Merchant berhasil ditambahkan!"]);
             } catch (Exception $e) {
                 DB::rollback();
                 return redirect(route('adm.merchant'))->withErrors(['error' => $e->getMessage()]);
@@ -117,5 +118,17 @@ class MerchantController extends Controller
         } else {
             return abort("404", "NOT FOUND");
         }
+    }
+
+    public function destroy(MerchantRequest $request)
+    {
+           $request->validated();
+           try{
+               $user = User::findOrFail($request->merchant_id);
+               $user->delete();
+               return redirect(route('adm.merchant'))->with(['warning' => "Merchant berhasil dihapus!"]);
+           } catch (Exception $e) {
+               return redirect(route('adm.merchant'))->withErrors(['error' => $e->getMessage()]);
+           }
     }
 }

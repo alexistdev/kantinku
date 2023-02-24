@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/staff/merchant', [MerchAdm::class, 'index'])->name('adm.merchant');
         Route::post('/staff/merchant', [MerchAdm::class, 'store'])->name('adm.merchant.save');
+        Route::delete('/staff/merchant', [MerchAdm::class, 'destroy'])->name('adm.merchant.delete');
         Route::get('/staff/merchant/add', [MerchAdm::class, 'create'])->name('adm.merchant.add');
 
         Route::get('/staff/{id}/merchant/menu', [MenuAdm::class, 'index'])->name('adm.merchant.menu');
