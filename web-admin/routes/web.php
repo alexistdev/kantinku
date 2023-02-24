@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/staff/transaksi', [TransAdm::class, 'index'])->name('adm.merchant.transaksi');
         Route::get('/staff/customer', [CusAdm::class, 'index'])->name('adm.merchant.customer');
+        Route::delete('/staff/customer', [CusAdm::class, 'destroy'])->name('adm.customer.delete');
         Route::get('/staff/setting', [SettAdm::class, 'index'])->name('adm.setting');
 
     });

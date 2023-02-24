@@ -41,14 +41,48 @@
             </div>
         </div>
     </div>
+    <!-- Start: Modal Hapus -->
+    <div id="modalHapus" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-standard-title"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-standard-title">Hapus Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> <!-- // END .modal-header -->
+                <form action="{{route('adm.customer.delete')}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" id="user_id" name="user_id"/>
+                                Anda ingin menghapus data ini?
+                            </div>
+                        </div>
 
+                    </div> <!-- // END .modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div> <!-- // END .modal-content -->
+        </div> <!-- // END .modal-dialog -->
+    </div>
+    <!-- End: Modal Hapus        -->
 
     @push('customJS')
         <script src="{{asset('template/rocker/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('template/rocker/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
-        <x-upcube.toast.toast-message />
+        <x-upcube.toast.toast-message/>
         <script>
-
+            /** saat tombol hapus di klik */
+            $(document).on("click", ".open-hapus", function (e) {
+                e.preventDefault();
+                let fid = $(this).data('id');
+                $('#user_id').val(fid);
+            });
             $(document).ready(function () {
                 let base_url = '{{route('adm.merchant.customer')}}';
                 $('#tableCustomer').DataTable({

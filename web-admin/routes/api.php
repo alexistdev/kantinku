@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/v1/auth', [Login::class, 'Auth_login'])->name('api.login');
+Route::post('/v1/auth/register', [Login::class, 'daftar'])->name('api.daftar');
 Route::get('/v1/get_menu', [menu::class, 'get_menu'])->name('api.menu');
 Route::get('/v1/cart', [cart::class, 'get_item'])->name('api.cart.list');
 Route::post('/v1/cart', [cart::class, 'add_item'])->name('api.cart.add');

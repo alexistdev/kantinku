@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CustomerRequest;
 use App\Http\Traits\AdminTrait;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Exception;
 
 class CustomerController extends Controller
 {
@@ -27,22 +29,9 @@ class CustomerController extends Controller
                 ->editColumn('total', function ($request) {
                     return $request->transaksi_count;
                 })
-//                ->editColumn('phone', function ($request) {
-//                    return $request->merchant?->phone;
-//                })
-//                ->editColumn('status', function ($request) {
-//                    if ($request->status != 1) {
-//                        $str = "Suspend";
-//                    } else {
-//                        $str = "Aktif";
-//                    }
-//                    return $str;
-//                })
+
                 ->addColumn('action', function ($row) {
-//                    $url = route('adm.merchant.menu', base64_encode($row->merchant->id));
-                    $url = "";
-                    $btn = " <a href=\"$url\" class=\"btn btn-outline-danger px-5\"> HAPUS</a>";
-//                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
+                    $btn = " <a href=\"#\" class=\"btn btn-outline-danger px-5 open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#modalHapus\"> Delete</i></a>";
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -53,5 +42,16 @@ class CustomerController extends Controller
             'menuUtama' => 'dashboard',
             'menuKedua' => 'dashboard',
         ));
+    }
+
+    public function destroy(CustomerRequest $request){
+        $request->validated();
+        try{
+            $user = User::findOrFail($request->user_id);
+            $user->delete();
+            return redirect(route('adm.merchant.customer'))->with(['warning' => "Merchant berhasil dihapus!"]);
+        } catch (Exception $e) {
+            return redirect(route('adm.merchant.customer'))->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }
